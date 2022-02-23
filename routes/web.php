@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CreateFieldController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -24,3 +25,5 @@ Route::view('/', 'index');
 Route::post('login', LoginController::class)->middleware('guest');
 Route::get('dashboard', DashboardController::class)->middleware('auth');
 Route::get('logout', LogoutController::class);
+Route::post('field', CreateFieldController::class)->middleware('auth');
+
