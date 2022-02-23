@@ -17,12 +17,16 @@
 @foreach ($user->fields as $field)
 <article>
     <p>{{$field->name}}</p>
-    <form action="">
-        <select name="" id="">
+    <form action="/add-crop" method="POST">
+        @csrf
+
+        <select name="add-crop" id="add-crop">
             @foreach ($crops as $crop)
             <option value="{{$crop->id}}">{{$crop->name}}</option>
             @endforeach
         </select>
+        <input type="hidden" value="{{$field->id}}">
+        <button type="submit">Add crop</button>
     </form>
 </article>
 @endforeach

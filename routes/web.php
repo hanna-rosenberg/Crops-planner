@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddCropsToFieldController;
 use App\Http\Controllers\CreateFieldController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
@@ -26,4 +27,4 @@ Route::post('login', LoginController::class)->middleware('guest');
 Route::get('dashboard', DashboardController::class)->middleware('auth');
 Route::get('logout', LogoutController::class);
 Route::post('field', CreateFieldController::class)->middleware('auth');
-
+Route::post('add-crop', AddCropsToFieldController::class)->middleware('auth');

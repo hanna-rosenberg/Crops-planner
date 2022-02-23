@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Crop;
+use App\Models\Dislikes;
 
 class DashboardController extends Controller
 {
@@ -18,6 +19,9 @@ class DashboardController extends Controller
     {
         // Gör så att vi kan nå crops och loopa ut dem.
         $crops = Crop::all();
+
+        // Gör så att vi kan nå disklikes och använda den ut dem.
+        //$dislikes = Dislikes::all();
 
         $user = Auth::user();
 
