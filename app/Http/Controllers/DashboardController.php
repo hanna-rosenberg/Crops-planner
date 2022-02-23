@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Crop;
 
 class DashboardController extends Controller
 {
@@ -15,10 +16,14 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // Gör så att vi kan nå crops och loopa ut dem.
+        $crops = Crop::all();
+
         $user = Auth::user();
 
         return view('dashboard', [
-            'user' => $user
+            'user' => $user,
+            'crops' => $crops
         ]);
     }
 }
