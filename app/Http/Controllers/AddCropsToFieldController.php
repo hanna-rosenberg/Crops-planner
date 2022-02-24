@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CropsInField;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class AddCropsToFieldController extends Controller
 {
@@ -27,10 +28,10 @@ class AddCropsToFieldController extends Controller
         // $this->validate($request, [
         //     'name' => 'required|string|min:3'
         // ]);
-
+   
         $cropsInField = new CropsInField();
-        $cropsInField->crop_id = $request->input('value');
-        $cropsInField->field_id = $request->input('value');
+        $cropsInField->crop_id = $request->input('add-crop');
+        $cropsInField->field_id = $request->input('field-id');
         $cropsInField->save();
 
         return redirect('/dashboard');

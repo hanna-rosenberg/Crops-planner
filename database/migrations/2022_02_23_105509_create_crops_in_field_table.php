@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('crops_in_field', function (Blueprint $table) {
+        Schema::create('crops_in_fields', function (Blueprint $table) {
             $table->unsignedInteger('field_id');
             $table->unsignedInteger('crop_id');
+            $table->timestamps();
         });
     }
 

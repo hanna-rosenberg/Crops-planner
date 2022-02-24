@@ -27,4 +27,5 @@ Route::post('login', LoginController::class)->middleware('guest');
 Route::get('dashboard', DashboardController::class)->middleware('auth');
 Route::get('logout', LogoutController::class);
 Route::post('field', CreateFieldController::class)->middleware('auth');
-Route::post('add-crop', AddCropsToFieldController::class)->middleware('auth');
+//Oklart om 'store ska vara med nedan
+Route::post('add-crop', AddCropsToFieldController::class, 'store')->middleware('auth');
