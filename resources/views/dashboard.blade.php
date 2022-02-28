@@ -17,7 +17,7 @@
 @foreach ($user->fields as $field)
 <article>
     <p>{{$field->name}}</p>
-    <p>id: {{$field->id}}</p>
+    <p>id: {{$field->id}}</p> 
 
     <form action="/add-crop" method="POST">
         @csrf
@@ -30,7 +30,12 @@
         <input type="text" name="field-id" id="field-id" value="{{$field->id}}">
         <button type="submit">Add crop</button>
     </form>        
-
+    {{-- Printar ut id på de crops som ingår i detta field --}}
+    @foreach ($cropsInField as $cropInField)
+    @if ($cropInField->field_id === $field->id)
+    <p>{{$cropInField->crop_id}}</p>
+    @endif
+    @endforeach
 </article>
 @endforeach
 <a href="/logout">Logout?</a>
