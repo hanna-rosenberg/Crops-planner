@@ -2,6 +2,9 @@
 
 <p>Hello {{$user->name}} </p>
 
+{{-- @dump($test)
+
+var_dump($test) --}}
 
 <h1>Welcome to your farm</h1>
 
@@ -9,19 +12,21 @@
 <form action="/field" method="POST">
     @csrf
     <label for="name">Field name</label>
-<input type="text" name="name" id="name" placeholder="My first field">
-<button type="submit">Creat field</button>
+<input class="form-control" type="text" name="name" id="name" placeholder="My first field">
+<button class="btn btn-primary" type="submit">Creat field</button>
 </form>
-
 
 @foreach ($user->fields as $field)
 <article>
     <p>{{$field->name}}</p>
     <p>id: {{$field->id}}</p> 
+    {{-- @foreach ( as $test)
+<p>{{$test->name}}</p>
+    @endforeach --}}
 
     <form action="/add-crop" method="POST">
         @csrf
-        <select name="add-crop" id="add-crop">
+        <select name="crop-id" id="crop-id">
             @foreach ($crops as $crop)
             <option value="{{$crop->id}}">{{$crop->name}}</option>
             @endforeach
@@ -30,12 +35,12 @@
         <input type="text" name="field-id" id="field-id" value="{{$field->id}}">
         <button type="submit">Add crop</button>
     </form>        
-    {{-- Printar ut id på de crops som ingår i detta field --}}
-    @foreach ($cropsInField as $cropInField)
-    @if ($cropInField->field_id === $field->id)
-    <p>{{$cropInField->crop_id}}</p>
-    @endif
+    {{-- Printar ut id på de crops som ingår i detta field. Går igenom hela jävla DB kanske inte det bästa --}}
+       
+    @foreach ($field->crops as $crop)
+    <p>{{$crop->name}}</p>
     @endforeach
+
 </article>
 @endforeach
 <a href="/logout">Logout?</a>

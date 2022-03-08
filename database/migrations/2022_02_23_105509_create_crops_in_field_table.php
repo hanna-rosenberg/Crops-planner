@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('crops_in_fields', function (Blueprint $table) {
+        Schema::create('crop_field', function (Blueprint $table) {
             $table->unsignedInteger('field_id');
             $table->unsignedInteger('crop_id');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('crops_in_field');
+        Schema::dropIfExists('crop_field');
     }
 };

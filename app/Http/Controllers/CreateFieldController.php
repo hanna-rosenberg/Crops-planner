@@ -17,7 +17,6 @@ class CreateFieldController extends Controller
     public function __invoke(Request $request)
     {
 
-        //dd($request);
         $this->validate($request, [
             'name' => 'required|string|min:3'
         ]);

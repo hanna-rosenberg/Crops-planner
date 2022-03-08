@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Crop;
 use App\Models\CropsInField;
 use App\Models\Dislikes;
+use App\Models\Field;
 
 class DashboardController extends Controller
 {
@@ -20,18 +21,24 @@ class DashboardController extends Controller
     {
         // Gör så att vi kan nå crops och loopa ut dem.
         $crops = Crop::all();
+        //dd($crops);
 
-        $cropsInField = CropsInField::all();
+        //$cropsInField = CropsInField::all();
+        //Här borde vi kunna innerjoina med crops för att får illhång till nament inte bara id
 
-        // Gör så att vi kan nå disklikes och använda den ut dem.
-        //$dislikes = Dislikes::all();
+        // $cropsInField = CropsInField::join('crops', 'crops.id', '=', 'crops_in_fields.crop_id')
+        //     ->get('crops.name', 'crops.id');
+        //dd($cropsInField);
 
         $user = Auth::user();
+
+        //$fields = Field::all();
 
         return view('dashboard', [
             'user' => $user,
             'crops' => $crops,
-            'cropsInField' => $cropsInField
+            //'fields' => $fields,
+            //'cropsInField' => $cropsInField,
         ]);
     }
 }

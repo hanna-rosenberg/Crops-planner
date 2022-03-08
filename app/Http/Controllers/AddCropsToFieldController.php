@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CropsInField;
+//use App\Models\CropsInField;
+
+use App\Models\Field;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 
@@ -16,23 +18,15 @@ class AddCropsToFieldController extends Controller
      */
     public function __invoke(Request $request)
     {
-        echo 'hello';
+        $field = Field::find($request->input('field-id'));
+        $crop_id = $request->input('crop-id');
 
-        //------ I denna behöver vi kolla om det finns ngn grönsak i 
-        //samma field_id som är noterad som dislike i dislikes tabellen. 
-        // Kanske genom att hämta id på de andra grödorna i odlingen och kolla 
-        //om de finns i databasen för dislike.------.
+        $field->crops()->attach([$crop_id]);
 
-
-        // dd($request);
-        // $this->validate($request, [
-        //     'name' => 'required|string|min:3'
-        // ]);
-   
-        $cropsInField = new CropsInField();
-        $cropsInField->crop_id = $request->input('add-crop');
-        $cropsInField->field_id = $request->input('field-id');
-        $cropsInField->save();
+        // $cropsInField = new CropsInField();
+        // $cropsInField->crop_id = $request->input('add-crop');
+        // $cropsInField->field_id = $request->input('field-id');
+        // $cropsInField->save();
 
         return redirect('/dashboard');
     }

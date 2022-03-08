@@ -40,11 +40,8 @@ class Crop extends Model
     //     'email_verified_at' => 'datetime',
     // ];
 
-    public function crops()
+    public function fields()
     {
-        return $this->hasMany(Field::class);
+        return $this->belongsToMany(Field::class);
     }
-    
-    
-
 }

@@ -9,10 +9,8 @@ class Field extends Model
 {
     use HasFactory;
 
-    //KOlla om det är så denna ska vara. Ett field kan ju ha många crops...
-    //Men själva tabellen har ju inga krops, de ligger i crops in field
-    // public function crops()
-    // {
-    //     return $this->hasMany(Crop::class);
-    // }
+    public function crops()
+    {
+        return $this->belongsToMany(Crop::class);
+    }
 }
