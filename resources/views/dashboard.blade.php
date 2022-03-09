@@ -1,23 +1,19 @@
-@include('errors')
+@include('app');
 
 <p>Hello {{$user->name}} </p>
 
-{{-- @dump($test)
-
-var_dump($test) --}}
-
-<h1>Welcome to your farm</h1>
+<h1 class="text-xl font-bold">Welcome to your farm</h1>
 
 <h3>Add field</h3>
-<form action="/field" method="POST">
+<form class="mb-10" action="/field" method="POST">
     @csrf
     <label for="name">Field name</label>
-    <input class="form-control" type="text" name="name" id="name" placeholder="My first field">
-    <button class="btn btn-primary" type="submit">Creat field</button>
+    <input class="rounded border-solid border-2 border-slate-600" type="text" name="name" id="name" placeholder="My first field">
+    <button class="rounded border-solid border-2 border-slate-600 text-white bg-slate-600" type="submit">Creat field</button>
 </form>
 
 @foreach ($user->fields as $field)
-<article>
+<article class="rounded border-solid border-2 border-slate-600 mb-5 p-2">
     <p>{{$field->name}}</p>
     <p>id: {{$field->id}}</p>
     {{-- @foreach ( as $test)
@@ -26,31 +22,33 @@ var_dump($test) --}}
 
     <form action="/add-crop" method="POST">
         @csrf
-        <select name="crop-id" id="crop-id">
+        <select class="rounded border-solid border-2 border-slate-600" name="crop-id" id="crop-id">
             @foreach ($crops as $crop)
             <option value="{{$crop->id}}">{{$crop->name}}</option>
             @endforeach
         </select>
         {{-- Vill inte riktigt funka med ett hidden input --}}
         <input type="hidden" name="field-id" id="field-id" value="{{$field->id}}">
-        <button type="submit">Add crop</button>
+        <button class="rounded border-solid border-2 border-slate-600 text-white bg-slate-600" type="submit">Add crop</button>
     </form>
     {{-- Printar ut id på de crops som ingår i detta field. Går igenom hela jävla DB kanske inte det bästa --}}
 
     @foreach ($field->crops as $crop)
-    <p>{{$crop->name}}</p>
-    <a href="{{ route('remove', [$field, $crop]) }}">Remove</a>
+        <div class="flex">
+            <p>{{$crop->name}}</p>
+            <a class="rounded border-solid border-2 border-red-600 text-white bg-red-600" href="{{ route('remove', [$field, $crop]) }}">Remove</a>
+        </div>
     @endforeach
     <form action="">
-        <a href="/dislikes/{{$field->id}}">Check</a>
+        <a class="rounded border-solid border-2 border-slate-600 text-white bg-slate-600" href="/dislikes/{{$field->id}}">Check</a>
 </form>
 
 <form action="/dontlike" method="POST">
     @csrf
-    <input type="text" value="hej">
-    <button type="submit">Test</button>
+    <input class="rounded border-solid border-2 border-slate-600" type="text" value="hej">
+    <button class="rounded border-solid border-2 border-slate-600 text-white bg-slate-600"  type="submit">Test</button>
 </form>
 
 </article>
 @endforeach
-<a href="/logout">Logout?</a>
+<a class="rounded border-solid border-2 border-red-600 text-white bg-red-600" href="/logout">Logout?</a>

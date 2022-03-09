@@ -16,7 +16,7 @@ class DontlikeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $dislikes = Dontlikes::where('product_id', '>', 1)->get();
+        $dislikes = Dontlikes::where('product_id', '>', 0)->get();
         echo 'Efter detta fields';
         $field = Field::where('id', 1)->get();
         echo $field;
