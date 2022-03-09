@@ -11,7 +11,7 @@ class DislikesController extends Controller
     public function __invoke(Request $request)
     {
         $dislikes = Dislikes::all();
-        dd($dislikes);
+        // die(var_dump($dislikes));
         // $dislike = Dislike::all();
         // $field = Field::find($request->segment(1));
     }
