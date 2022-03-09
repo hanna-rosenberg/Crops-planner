@@ -44,7 +44,12 @@ var_dump($test) --}}
     <form action="">
         <a href="/dislikes/{{$field->id}}">Check</a>
 </form>
-  
+
+<form action="/dontlike" method="POST">
+    @csrf
+    <input type="text" value="hej">
+    <button type="submit">Test</button>
+</form>
 
 </article>
 @endforeach

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dislikes extends Model
+class Dontlikes extends Model
 {
     use HasFactory;
 }
