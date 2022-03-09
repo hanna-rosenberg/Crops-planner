@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Crop;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $crops =[
+            new Crop(['name' => 'Strawberry']),
+            new Crop(['name' => 'Bluberry']),
+            new Crop(['name' => 'Mangold']),
+            new Crop(['name' => 'Salad']),
+            new Crop(['name' => 'Beetroot']),
+        ];
+        foreach ($crops as $crop) {
+            $crop->save();
+        }
+
+        $user = new User(['name' => 'Henrik', 'email' => 'henrik@yrgo.se', 'password' => Hash::make('123')]);
+        $user->save();
     }
 }

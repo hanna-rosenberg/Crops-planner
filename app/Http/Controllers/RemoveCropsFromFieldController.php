@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 //use App\Models\CropsInField;
 
 use App\Models\Field;
+use App\Models\Crop;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 
@@ -16,7 +17,7 @@ class RemoveCropsFromFieldController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, Field $field, Crop $crop)
     {
         $field = Field::find($request->segment(2));
         $crop_id = $request->segment(3);

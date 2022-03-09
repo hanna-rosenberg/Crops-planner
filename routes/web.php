@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddCropsToFieldController;
 use App\Http\Controllers\CreateFieldController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DislikesController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RemoveCropsFromFieldController;
@@ -31,4 +32,5 @@ Route::get('logout', LogoutController::class);
 Route::post('field', CreateFieldController::class)->middleware('auth');
 //Oklart om 'store ska vara med nedan
 Route::post('add-crop', AddCropsToFieldController::class)->middleware('auth');
-Route::get('remove-crop/{field_id}/{crop_id}', RemoveCropsFromFieldController::class)->middleware('auth');
+Route::get('remove-crop/{field}/{crop}', RemoveCropsFromFieldController::class)->name('remove');
+Route::get('dislikes/{field_id}', DislikesController::class)->middleware('auth');

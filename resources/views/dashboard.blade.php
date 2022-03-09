@@ -39,8 +39,12 @@ var_dump($test) --}}
 
     @foreach ($field->crops as $crop)
     <p>{{$crop->name}}</p>
-    <a href="/remove-crop/{{$field->id}}/{{$crop->id}}">Remove</a>
+    <a href="{{ route('remove', [$field, $crop]) }}">Remove</a>
     @endforeach
+    <form action="">
+        <a href="/dislikes/{{$field->id}}">Check</a>
+</form>
+  
 
 </article>
 @endforeach
