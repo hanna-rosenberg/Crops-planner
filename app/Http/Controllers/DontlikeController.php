@@ -20,18 +20,15 @@ class DontlikeController extends Controller
     {
         $fieldId = $request->input('id');
 
-        // $dislikes = Dontlikes::where('product_id', $fieldId)->get();
+        $field = Field::with(['crops', 'crops.incompatible'])->find($fieldId);
+       //Denna håller allt vi behöver, men hur kommer vi åt det?
+        
+        dd($field->toArray());
 
-        //Gets name from crops, id from dontlike, 
-        $dislikes = Crop::join('dontlikes', 'crops.id', '=', 'dontlikes.dislike_id')
-            ->join('crop_field', 'crops.id', '=', 'crop_field.crop_id')
-            ->where('crop_field.field_id', '=', $fieldId)
-            ->get();
-
-        echo '********* Efter detta fieldsID ***************';
-        echo ($fieldId);
-
-        echo '***********Efter detta dislikes***********';
-        echo $dislikes;
+        foreach ($field->toArray() as $item) {
+            //i en var_dump ser man datan vi vill åt. Men i en DD visas den som en bool. 
+            //Hur kommer vi ner i arrayen och åt inpompatible?
+            //var_dump($item);
+        }
     }
 }
