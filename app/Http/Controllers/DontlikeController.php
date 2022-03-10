@@ -19,6 +19,7 @@ class DontlikeController extends Controller
 
     {
         $fieldId = $request->input('id');
+        // echo $fieldId;
 
         // $dislikes = Dontlikes::where('product_id', $fieldId)->get();
 
