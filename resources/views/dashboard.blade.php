@@ -1,4 +1,4 @@
-@include('app');
+@include('app')
 
 <p>Hello {{$user->name}} </p>
 
@@ -39,14 +39,15 @@
             <a class="rounded border-solid border-2 border-red-600 text-white bg-red-600" href="{{ route('remove', [$field, $crop]) }}">Remove</a>
         </div>
     @endforeach
-    <form action="">
+    {{-- <form action="">
         <a class="rounded border-solid border-2 border-slate-600 text-white bg-slate-600" href="/dislikes/{{$field->id}}">Check</a>
-</form>
+</form> --}}
 
 <form action="/dontlike" method="POST">
     @csrf
-    <input class="rounded border-solid border-2 border-slate-600" type="text" value="hej">
-    <button class="rounded border-solid border-2 border-slate-600 text-white bg-slate-600"  type="submit">Test</button>
+    <input type="hidden" name="id" id="id" value="{{$field->id}}">
+    {{-- <input class="rounded border-solid border-2 border-slate-600" type="text" id="id" value="{{$field->id}}"> --}}
+    <button class="rounded border-solid border-2 border-slate-600 text-white bg-slate-600" type="submit">Check</button>
 </form>
 
 </article>

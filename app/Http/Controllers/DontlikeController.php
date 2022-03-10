@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Crop;
 use App\Models\Dontlikes;
 use App\Models\Field;
 use Illuminate\Http\Request;
@@ -15,17 +16,22 @@ class DontlikeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request)
+
     {
-        $dislikes = Dontlikes::where('product_id', '>', 0)->get();
-        echo 'Efter detta fields';
-        $field = Field::where('id', 1)->get();
-        echo $field;
+        $fieldId = $request->input('id');
+
+        // $dislikes = Dontlikes::where('product_id', $fieldId)->get();
+
+        //Gets name from crops, id from dontlike, 
+        $dislikes = Crop::join('dontlikes', 'crops.id', '=', 'dontlikes.dislike_id')
+            ->join('crop_field', 'crops.id', '=', 'crop_field.crop_id')
+            ->where('crop_field.field_id', '=', $fieldId)
+            ->get();
+
+        echo '********* Efter detta fieldsID ***************';
+        echo ($fieldId);
+
         echo '***********Efter detta dislikes***********';
         echo $dislikes;
-
-        foreach ($dislikes as $dislike) {
-            echo $dislike->dislike_id;
-        }
-        echo 'hello';
     }
 }
