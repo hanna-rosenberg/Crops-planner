@@ -19,6 +19,7 @@ class DontlikeController extends Controller
 
     {
         $fieldId = $request->input('id');
+        // echo $fieldId;
 
         $field = Field::with(['crops', 'crops.incompatible'])->find($fieldId);
        //Denna håller allt vi behöver, men hur kommer vi åt det?
