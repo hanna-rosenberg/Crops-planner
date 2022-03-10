@@ -19,17 +19,19 @@ class DontlikeController extends Controller
 
     {
         $fieldId = $request->input('id');
-        // echo $fieldId;
+        $crop = Crop::join('crop_field', 'crops.id', '=', 'crop_field.crop_id')
+            ->where('crop_field.field_id', $fieldId)
+            ->get();
 
-        $field = Field::with(['crops', 'crops.incompatible'])->find($fieldId);
-       //Denna håller allt vi behöver, men hur kommer vi åt det?
-        
-        dd($field->toArray());
+        //dd($crop);
 
-        foreach ($field->toArray() as $item) {
-            //i en var_dump ser man datan vi vill åt. Men i en DD visas den som en bool. 
-            //Hur kommer vi ner i arrayen och åt inpompatible?
-            //var_dump($item);
+        foreach ($crop as $test) {
+            echo ($test->name);
+            echo ($test->incompatible_id);
         }
+
+        //$field = Field::with(['crops', 'crops.incompatible'])->find($fieldId);
+
+
     }
 }

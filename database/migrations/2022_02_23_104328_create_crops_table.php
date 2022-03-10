@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('crops', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('incompatible_id')->nullable();
             $table->timestamps();
         });
     }

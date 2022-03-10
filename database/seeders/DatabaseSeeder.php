@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $crops =[
-            new Crop(['name' => 'Strawberry']),
-            new Crop(['name' => 'Bluberry']),
+            new Crop(['name' => 'Strawberry', 'incompatible_id' => 2]),
+            new Crop(['name' => 'Bluberry', 'incompatible_id' => 3]),
             new Crop(['name' => 'Mangold']),
             new Crop(['name' => 'Salad']),
             new Crop(['name' => 'Beetroot']),
