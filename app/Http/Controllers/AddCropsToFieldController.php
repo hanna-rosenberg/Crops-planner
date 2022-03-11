@@ -39,18 +39,5 @@ class AddCropsToFieldController extends Controller
             };
             return redirect('dashboard');
         };
-        // dd($dislike);
-        //dislikes($crop_id);
-        // $cropsInField = new CropsInField();
-        // $cropsInField->crop_id = $request->input('add-crop');
-        // $cropsInField->field_id = $request->input('field-id');
-        // $cropsInField->save();
-
-        //return redirect('/dashboard');
     }
-
-    // public function dislike($crop_id)
-    // {
-    //     $dislike = Dislike::all();
-    // }
 }
