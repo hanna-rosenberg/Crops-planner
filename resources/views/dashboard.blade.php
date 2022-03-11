@@ -41,6 +41,7 @@
                 <a class="rounded border-solid border-2 border-red-600 text-white bg-red-600" href="{{ route('remove', [$field, $crop]) }}">Remove</a>
             </div>
             @endforeach
+            @include('errors')
             {{-- <form action="">
         <a class="rounded border-solid border-2 border-slate-600 text-white bg-slate-600" href="/dislikes/{{$field->id}}">Check</a>
             </form> --}}
