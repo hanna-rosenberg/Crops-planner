@@ -39,7 +39,8 @@
                 </form>
                 {{-- Printar ut id på de crops som ingår i detta field. Går igenom hela jävla DB kanske inte det bästa --}}
 
-                @foreach ($field->crops as $crop)
+                @foreach ($fields->crops as $crop)
+                {{dd($crop)}}
                     <div class="flex">
                         <p>{{ $crop->name }}</p>
                         <a class="rounded border-solid border-2 border-red-600 text-white bg-red-600"

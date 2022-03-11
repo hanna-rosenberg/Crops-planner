@@ -19,26 +19,16 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // Gör så att vi kan nå crops och loopa ut dem.
         $crops = Crop::all();
-        //dd($crops);
-
-        //$cropsInField = CropsInField::all();
-        //Här borde vi kunna innerjoina med crops för att får illhång till nament inte bara id
-
-        // $cropsInField = CropsInField::join('crops', 'crops.id', '=', 'crops_in_fields.crop_id')
-        //     ->get('crops.name', 'crops.id');
-        //dd($cropsInField);
-
+        $fields = Field::with('crops')->get();
+         dd($fields);
         $user = Auth::user();
-
-        //$fields = Field::all();
 
         return view('dashboard', [
             'user' => $user,
             'crops' => $crops,
-            //'fields' => $fields,
-            //'cropsInField' => $cropsInField,
+            'fields' => $fields,
+
         ]);
     }
 }
