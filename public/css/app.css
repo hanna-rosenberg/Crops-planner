@@ -27,7 +27,44 @@ body {
   background-attachment: fixed;
 }
 
+.frontpage-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container {
+  background-image: url("/images/crops.webp");
+  width: 100%;
+  background-size: 200vh;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 5rem;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login-container h1 {
+  font-family: Amatic SC;
+  margin-bottom: 1rem;
+}
+
+.login-container input {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.login-container button {
+  background-color: rgb(213, 223, 215);
+  border-color: rgb(143, 153, 138);
+}
+
 .container {
+  padding-right: 1%;
+  padding-left: 1%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   background: rgba(255, 255, 255, 0.3);
 }
 
@@ -37,6 +74,46 @@ article {
   justify-self: center;
   background-size: 200vh;
   background: rgba(255, 255, 255, 0.8);
+  padding: 5rem;
+}
+
+.p-2 {
+  padding: 1.5rem !important;
+}
+
+.error-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.error-warning {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  background-color: rgb(204, 169, 169);
+  color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.login-error-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login-error-warning {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(204, 169, 169);
+  color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .welcome-text {

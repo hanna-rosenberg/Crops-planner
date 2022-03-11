@@ -21,14 +21,13 @@ class DashboardController extends Controller
     {
         $crops = Crop::all();
         $fields = Field::with('crops')->get();
-         //dd($fields);
+        //dd($fields);
         $user = Auth::user();
 
         return view('dashboard', [
             'user' => $user,
             'crops' => $crops,
             'fields' => $fields,
-
         ]);
     }
 }

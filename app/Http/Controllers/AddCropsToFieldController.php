@@ -34,7 +34,7 @@ class AddCropsToFieldController extends Controller
 
                 foreach ($incompatibleName as $name) {
                     $test = $name->name;
-                    return back()->withErrors("Be were! This crop dosen't like $test");
+                    return back()->withErrors("Be awere! This crop dosen't like $test");
                 }
             };
             return redirect('dashboard');
