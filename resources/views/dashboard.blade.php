@@ -1,51 +1,60 @@
-@include('errors')
+@include('app')
 
-<p>Hello {{$user->name}} </p>
+<body>
+    <div class="container">
+        <!-- <img src="/images/crops.jpg"> -->
+        <div class="flex justify-center">
+            <div class="justify-center">
+                
+                <h1 class="welcome-text">Welcome to your farm, {{ $user->name }}</h1>
+                
+                <form class="field" action="/field" method="POST">
+                    @csrf
+                    <label for="name">Field name</label>
+                    <input class="rounded border-solid border-2 border-white-600" type="text" name="name" id="name"
+                    placeholder="My field">
+                    <button class="rounded border-solid border-2 border-white-600 text-green-600 bg-white"
+                    type="submit">Create field</button>
+                </form>
+                
+                @include('errors')
+                @foreach ($user->fields as $field)
 
-{{-- @dump($test)
+                    <article class="rounded border-solid border-2 border-white-600 mb-5 p-2">
 
-var_dump($test) --}}
+                        <p class="field-name">{{ $field->name }}</p>
 
-<h1>Welcome to your farm</h1>
+                {{-- @endforeach --}}
 
-<h3>Add field</h3>
-<form action="/field" method="POST">
-    @csrf
-    <label for="name">Field name</label>
-    <input class="form-control" type="text" name="name" id="name" placeholder="My first field">
-    <button class="btn btn-primary" type="submit">Creat field</button>
-</form>
+                <form class="flex justify-between" action="/add-crop" method="POST">
+                    @csrf
+                    <select class="rounded border-solid border-2 border-slate-600" name="crop-id" id="crop-id">
+                        @foreach ($crops as $crop)
+                            <option value="{{ $crop->id }}">{{ $crop->name }}</option>
+                        @endforeach
+                    </select>
 
-@foreach ($user->fields as $field)
-<article>
-    <p>{{$field->name}}</p>
-    <p>id: {{$field->id}}</p>
-    {{-- @foreach ( as $test)
-<p>{{$test->name}}</p>
-    @endforeach --}}
+                    <input type="hidden" name="field-id" id="field-id" value="{{ $field->id }}">
+                    <button class="ml-10 rounded border-solid border-2 border-white-600 text-green-600 bg-white"
+                        type="submit">Add crop</button>
+                </form>
+                {{-- Printar ut id på de crops som ingår i detta field. Går igenom hela jävla DB kanske inte det bästa --}}
 
-    <form action="/add-crop" method="POST">
-        @csrf
-        <select name="crop-id" id="crop-id">
-            @foreach ($crops as $crop)
-            <option value="{{$crop->id}}">{{$crop->name}}</option>
-            @endforeach
-        </select>
-        {{-- Vill inte riktigt funka med ett hidden input --}}
-        <input type="hidden" name="field-id" id="field-id" value="{{$field->id}}">
-        <button type="submit">Add crop</button>
-    </form>
-    {{-- Printar ut id på de crops som ingår i detta field. Går igenom hela jävla DB kanske inte det bästa --}}
+                @foreach ($field->crops as $crop)
+                    <div class="flex justify-between mt-2">
+                        <p>{{ $crop->name }}</p>
+                        <a class="rounded border-solid border-2 border-white-600 text-green-600 bg-white "
+                            href="{{ route('remove', [$field, $crop]) }}">Remove</a>
+                    </div>
+                @endforeach
 
-    @foreach ($field->crops as $crop)
-    <p>{{$crop->name}}</p>
-    <a href="{{ route('remove', [$field, $crop]) }}">Remove</a>
-    @endforeach
-    <form action="">
-        <a href="/dislikes/{{$field->id}}">Check</a>
-</form>
-  
-
-</article>
-@endforeach
-<a href="/logout">Logout?</a>
+                </article>
+                @endforeach
+                <div class="logout">
+                    <a class="rounded border-solid border-2 border-black-600 text-black bg-white"
+                        href="/logout">Logout?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

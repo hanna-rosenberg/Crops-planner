@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dislikes', function (Blueprint $table) {
-            $table->unsignedInteger('product_id');
-            $table->unsignedInteger('dislike_id');
+        Schema::create('incompatible_crops', function (Blueprint $table) {
+            $table->unsignedInteger('crop_id');
+            $table->unsignedInteger('incompatible_id');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dislikes');
+        Schema::dropIfExists('incompatible_crops');
     }
 };
