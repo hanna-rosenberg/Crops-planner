@@ -23,10 +23,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::view('/', 'index');
 Route::post('login', LoginController::class)->middleware('guest');
 Route::get('dashboard', DashboardController::class)->middleware('auth');
@@ -34,5 +30,4 @@ Route::get('logout', LogoutController::class);
 Route::post('field', CreateFieldController::class)->middleware('auth');
 Route::post('add-crop', AddCropsToFieldController::class)->middleware('auth');
 Route::get('remove-crop/{field}/{crop}', RemoveCropsFromFieldController::class)->name('remove')->middleware('auth');
-//Route::post('dontlike', DontlikeController::class)->middleware('auth');
 Route::get('delete-field/{field}', DeleteFieldController::class)->name('delete-field')->middleware('auth');

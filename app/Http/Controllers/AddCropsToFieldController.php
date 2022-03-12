@@ -7,37 +7,35 @@ namespace App\Http\Controllers;
 use App\Models\Crop;
 use App\Models\Field;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Console\Input\Input;
 
 class AddCropsToFieldController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function __invoke(Request $request)
     {
-        $field = Field::find($request->input('field-id'));
-        $crop_id = $request->input('crop-id');
+        if (Auth::user()) {
+            $field = Field::find($request->input('field-id'));
+            $crop_id = $request->input('crop-id');
 
-        $field->crops()->attach([$crop_id]);
+            $field->crops()->attach([$crop_id]);
 
-        $incompatibleId = Crop::select('incompatible_id')->where('id', $crop_id)->get();
+            $incompatibleId = Crop::select('incompatible_id', 'name')->where('id', $crop_id)->get();
 
-        foreach ($incompatibleId as $incompatible) {
-            $incompatible_id = $incompatible->incompatible_id;
+            foreach ($incompatibleId as $incompatible) {
+                $cropName = $incompatible->name;
 
-            if ($incompatible->incompatible_id) {
-                $incompatibleName = Crop::select()->where('id', '=', $incompatible->incompatible_id)->get();
+                if ($incompatible->incompatible_id) {
+                    $incompatibleName = Crop::select()->where('id', '=', $incompatible->incompatible_id)->get();
 
-                foreach ($incompatibleName as $name) {
-                    $test = $name->name;
-                    return back()->withErrors("Be awere! This crop dosen't like $test");
-                }
+                    foreach ($incompatibleName as $name) {
+                        $incompatibleCropName = $name->name;
+                        return back()->withErrors("Be awere! $cropName dosen't like $incompatibleCropName");
+                    }
+                };
+                return redirect('dashboard');
             };
-            return redirect('dashboard');
-        };
+        }
     }
 }

@@ -11,7 +11,7 @@
                         @csrf
                         <label for="name">Field name</label>
                         <input class="rounded border-solid border-2 border-white-600" type="text" name="name" id="name"
-                            placeholder="My field" required maxlength="100" minlength="3">
+                            placeholder="My field" required maxlength="50" minlength="3">
 
                         <button class="rounded border-solid border-2 border-white-600 text-green-600 bg-white"
                             type="submit">Create field</button>

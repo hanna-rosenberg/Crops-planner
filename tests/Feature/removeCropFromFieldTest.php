@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class removeCropFromField extends TestCase
+class RemoveCropFromField extends TestCase
 {
     use RefreshDatabase;
 

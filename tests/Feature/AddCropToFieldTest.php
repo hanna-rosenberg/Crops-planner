@@ -24,10 +24,10 @@ class AddCropToFieldTest extends TestCase
         $user->save();
 
         $this
-        ->actingAs($user)
-        ->post('/field', [
-            'name' => 'Field one',
-        ]);
+            ->actingAs($user)
+            ->post('/field', [
+                'name' => 'Field one',
+            ]);
 
         $crop = new Crop();
         $crop->name = 'strawberry';
