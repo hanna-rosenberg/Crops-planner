@@ -5,16 +5,16 @@
         <!-- <img src="/images/crops.jpg"> -->
         <div class="flex justify-center">
             <div class="justify-center">
+                <div class="welcome-container">
+                    <h1 class="welcome-text">Welcome to your farm, {{ $user->name }}</h1>
 
-                <h1 class="welcome-text">Welcome to your farm, {{ $user->name }}</h1>
-
-                <form class="field" action="/field" method="POST">
-                    @csrf
-                    <label for="name">Field name</label>
-                    <input class="rounded border-solid border-2 border-white-600" type="text" name="name" id="name" placeholder="My field">
-                    <button class="rounded border-solid border-2 border-white-600 text-green-600 bg-white" type="submit">Create field</button>
-                </form>
-
+                    <form class="field" action="/field" method="POST">
+                        @csrf
+                        <label for="name">Field name</label>
+                        <input class="rounded border-solid border-2 border-white-600" type="text" name="name" id="name" placeholder="My field">
+                        <button class="rounded border-solid border-2 border-white-600 text-green-600 bg-white" type="submit">Create field</button>
+                    </form>
+                </div>
                 @include('errors')
                 @foreach ($user->fields as $field)
 
