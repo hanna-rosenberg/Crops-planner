@@ -23,11 +23,12 @@ class AddCropToFieldTest extends TestCase
         $user->password = Hash::make('123');
         $user->save();
 
-        $field = new Field();
-        $field->name = 'Field one';
-        $user->save();
+        $this
+        ->actingAs($user)
+        ->post('/field', [
+            'name' => 'Field one',
+        ]);
 
-        //Vet ej om denna behövs... För att skapa två sorps pga logik i contoller
         $crop = new Crop();
         $crop->name = 'strawberry';
         $crop->incompatible_id = 2;
@@ -40,13 +41,10 @@ class AddCropToFieldTest extends TestCase
 
         $this
             ->actingAs($user)
-            //->followingRedirects()
             ->post('/add-crop', [
                 'field-id' => 1,
                 'crop-id' => 1
             ]);
-
-        // $this->assertDatabaseHas('fields', ['name' => 'Field one']);
 
         $this->assertDatabaseHas('crop_field', ['field_id' => 1, 'crop_id' => 1]);
     }

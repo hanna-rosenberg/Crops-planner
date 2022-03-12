@@ -11,10 +11,10 @@ use Tests\TestCase;
 
 class removeCropFromField extends TestCase
 {
-   // Route::get('remove-crop/{field}/{crop}', RemoveCropsFromFieldController::class)->name('remove')->middleware('auth');
+    // Route::get('remove-crop/{field}/{crop}', RemoveCropsFromFieldController::class)->name('remove')->middleware('auth');
+    use RefreshDatabase;
 
- 
-    public function test_remove_crop()
+    public function test_remove_crop_from_field()
     {
         $user = new User();
         $user->name = 'Sofia';
@@ -24,8 +24,10 @@ class removeCropFromField extends TestCase
 
         $this
             ->actingAs($user)
-            ->get('/delete-field/1');
+            ->post('/field', [
+                'name' => 'Field one',
+            ]);
 
-        $this->assertDatabaseMissing('fields', ['id' => 1]);
+        $this->assertDatabaseHas('fields', ['name' => 'Field one']);
     }
 }
