@@ -2,7 +2,6 @@
 
 <body>
     <div class="container">
-        <!-- <img src="/images/crops.jpg"> -->
         <div class="flex justify-center">
             <div class="justify-center">
                 <div class="welcome-container">
@@ -38,7 +37,6 @@
                             <button class="ml-10 rounded border-solid border-2 border-white-600 text-green-600 bg-white"
                                 type="submit">Add crop</button>
                         </form>
-                        {{-- Printar ut id på de crops som ingår i detta field. Går igenom hela jävla DB kanske inte det bästa --}}
 
                         @foreach ($field->crops as $crop)
                             <div class="flex justify-between mt-2">

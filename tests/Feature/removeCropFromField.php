@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Feature;
@@ -8,11 +9,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class DeleteFieldTest extends TestCase
+class removeCropFromField extends TestCase
 {
-   use RefreshDatabase;
+   // Route::get('remove-crop/{field}/{crop}', RemoveCropsFromFieldController::class)->name('remove')->middleware('auth');
 
-    public function test_delete_field()
+ 
+    public function test_remove_crop()
     {
         $user = new User();
         $user->name = 'Sofia';
