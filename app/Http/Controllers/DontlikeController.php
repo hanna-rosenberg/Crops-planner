@@ -18,20 +18,16 @@ class DontlikeController extends Controller
     public function __invoke(Request $request)
 
     {
-        $fieldId = $request->input('id');
-        $crop = Crop::join('crop_field', 'crops.id', '=', 'crop_field.crop_id')
-            ->where('crop_field.field_id', $fieldId)
-            ->get();
+        // $fieldId = $request->input('id');
+        // $crop = Crop::join('crop_field', 'crops.id', '=', 'crop_field.crop_id')
+        //     ->where('crop_field.field_id', $fieldId)
+        //     ->get();
 
-        //dd($crop);
 
-        foreach ($crop as $test) {
-            echo ($test->name);
-            echo ($test->incompatible_id);
-        }
-
-        //$field = Field::with(['crops', 'crops.incompatible'])->find($fieldId);
-
+        // foreach ($crop as $test) {
+        //     echo ($test->name);
+        //     echo ($test->incompatible_id);
+        // }
 
     }
 }

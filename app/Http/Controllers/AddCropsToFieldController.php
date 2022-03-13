@@ -21,13 +21,13 @@ class AddCropsToFieldController extends Controller
 
             $field->crops()->attach([$crop_id]);
 
-            $incompatibleId = Crop::select('incompatible_id', 'name')->where('id', $crop_id)->get();
+            $incompatibleCrops = Crop::select('incompatible_id', 'name')->where('id', $crop_id)->get();
 
-            foreach ($incompatibleId as $incompatible) {
-                $cropName = $incompatible->name;
+            foreach ($incompatibleCrops as $incompatibleCrop) {
+                $cropName = $incompatibleCrop->name;
 
-                if ($incompatible->incompatible_id) {
-                    $incompatibleName = Crop::select()->where('id', '=', $incompatible->incompatible_id)->get();
+                if ($incompatibleCrop->incompatible_id) {
+                    $incompatibleName = Crop::select()->where('id', '=', $incompatibleCrop->incompatible_id)->get();
 
                     foreach ($incompatibleName as $name) {
                         $incompatibleCropName = $name->name;
