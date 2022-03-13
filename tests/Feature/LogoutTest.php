@@ -6,22 +6,17 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class LoginTest extends TestCase
+class LogoutTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_view_login_form()
+    public function test_logout()
     {
-        $response = $this->get('/');
-        $response->assertSeeText('Email');
-        $response->assertStatus(200);
-    }
 
-    public function test_login_user()
-    {
         $user = new User();
         $user->name = 'Hanna';
         $user->email = 'hanna@hej.se';
@@ -36,16 +31,14 @@ class LoginTest extends TestCase
             ]);
 
         $response->assertSeeText('Welcome to your farm');
-    }
 
-    public function test_login_user_without_password()
-    {
-        $response = $this
-            ->followingRedirects()
-            ->post('login', [
-                'email' => 'hanna@hej.se',
-            ]);
+        // $response = $this->$user->get('logout');
+        // har vi testat knappen? 
 
-        $response->assertSeeText('Whoops! Please try to login again.');
+        $response = Auth::logout(); // skapar en utloggningsprocess
+
+        $response = $this->get('/'); // skickar till startsidan 
+
+        $response->assertStatus(200); // får meddelande att allt är okej
     }
 }
