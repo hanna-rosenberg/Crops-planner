@@ -11,18 +11,38 @@ use App\Models\Field;
 
 class DashboardController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function __invoke(Request $request)
     {
         $crops = Crop::all();
-        $fields = Field::with('crops')->get();
-        //dd($fields);
         $user = Auth::user();
+    
+
+        $fields = Field::with('crops')->get();
+        //dd($fields[1]);
+
+        $array = $fields->toArray();
+       // dd($array);
+
+        //dd($fields->fields->crops->name) ;
+
+        foreach ($array as $field) {
+            //DD($field['crops']);
+            foreach ($field['crops'] as $crop) {
+                //dd($crop['name']);
+                // foreach ($crop as $name) {
+                //     echo $name['name'];
+                // }
+            }
+        };
+
+        $testarray = $fields;
+
+        // foreach ($testarray as $field) {
+        //     foreach ($field as $crops) {
+        //         echo $crops->name;
+        //     }
+        // };
 
         return view('dashboard', [
             'user' => $user,
