@@ -35,7 +35,12 @@ class LogoutTest extends TestCase
         // $response = $this->$user->get('logout');
         // har vi testat knappen? 
 
-        $response = Auth::logout(); // skapar en utloggningsprocess
+
+        $logout = $this
+            ->followingRedirects()
+            ->get('logout');
+
+        $logout->assertOk();
 
         $response = $this->get('/'); // skickar till startsidan 
 
