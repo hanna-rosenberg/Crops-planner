@@ -49,4 +49,3 @@ class Crop extends Model
         return $this->belongsToMany(Crop::class, 'incompatible_crops', 'crop_id', 'incompatible_id');
     }
 }
-

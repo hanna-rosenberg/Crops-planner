@@ -11,18 +11,15 @@ use App\Models\Field;
 
 class DashboardController extends Controller
 {
-
     public function __invoke(Request $request)
     {
         $crops = Crop::all();
         $user = Auth::user();
-    
-
         $fields = Field::with('crops')->get();
         //dd($fields[1]);
 
         $array = $fields->toArray();
-       // dd($array);
+        // dd($array);
 
         //dd($fields->fields->crops->name) ;
 
