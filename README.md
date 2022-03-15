@@ -1,4 +1,4 @@
-<img src="https://media.giphy.com/media/jn12pLnxU1kDRi1vWZ/giphy.gif">
+<p align="center"><img src="https://media.giphy.com/media/jn12pLnxU1kDRi1vWZ/giphy.gif" width="200"></p>
 
 ## Crops planner
 
