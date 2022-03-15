@@ -29,4 +29,18 @@ class CreateFieldTest extends TestCase
 
         $this->assertDatabaseHas('fields', ['name' => 'Field one']);
     }
+    public function test_create_field_without_name()
+    {
+        $user = new User();
+        $user->name = 'Sofia';
+        $user->email = 'sofia@yrgo.se';
+        $user->password = Hash::make('123');
+        $user->save();
+
+        $response = $this->actingAs($user)->followingRedirects()->post('/field', [
+            'name' => '',
+        ]);
+
+        $response->assertSeeText('The name field is required');
+    }
 }
