@@ -12,7 +12,6 @@ use Symfony\Component\Console\Input\Input;
 
 class AddCropsToFieldController extends Controller
 {
-
     public function __invoke(Request $request)
     {
         if (Auth::user()) {

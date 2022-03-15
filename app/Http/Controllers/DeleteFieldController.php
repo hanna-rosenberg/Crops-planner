@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class DeleteFieldController extends Controller
 {
-
     public function __invoke(Request $request)
     {
         if (Auth::user()) {

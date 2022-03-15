@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $crops = [
             new Crop(['name' => 'Strawberry', 'incompatible_id' => 2]),
-            new Crop(['name' => 'Bluberry', 'incompatible_id' => 3]),
+            new Crop(['name' => 'Blueberry', 'incompatible_id' => 3]),
             new Crop(['name' => 'Mangold']),
             new Crop(['name' => 'Salad']),
             new Crop(['name' => 'Beetroot']),
